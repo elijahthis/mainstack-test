@@ -1,0 +1,26 @@
+.PageLayout {
+	display: grid;
+	grid-template-columns: 304px 1fr;
+	height: 100vh;
+
+	&__children {
+		padding: 24px 60px;
+
+		height: calc(100vh - 96px);
+		overflow-y: auto;
+	}
+}
+
+@media (max-width: 768px) {
+	.PageLayout {
+		display: block;
+		height: 100vh;
+
+		&__children {
+			padding: 24px 1.2rem;
+
+			height: calc(100vh - 96px);
+			overflow-y: auto;
+		}
+	}
+}

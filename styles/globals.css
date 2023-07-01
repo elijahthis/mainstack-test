@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+	font-family: "Söhne-Book";
+	src: url(../public/fonts/TestSohne-Buch.otf);
+}
+@font-face {
+	font-family: "Söhne-Power";
+	src: url(../public/fonts/TestSohne-Kraftig.otf);
+}
+@font-face {
+	font-family: "Söhne-Semibold";
+	src: url(../public/fonts/TestSohne-Halbfett.otf);
+}
+@font-face {
+	font-family: "Söhne-Bold";
+	src: url(../public/fonts/TestSohne-Kraftig.otf);
+}
+@font-face {
+	font-family: "Söhne-Light";
+	src: url(../public/fonts/TestSohne-Leicht.otf);
+}
+
+:root {
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--foreground-rgb: 255, 255, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
+}
+
+body {
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Söhne-Book";
+}
+*::selection {
+	background-color: rgb(255, 84, 3);
+	color: #ffffff;
+}
+
+h3 {
+	font-family: "Söhne-Bold";
+	font-size: 24px;
+	line-height: 32px;
+}
+
+h4 {
+	font-family: "Söhne-Bold";
+	font-size: 18px;
+	line-height: 24px;
+}
