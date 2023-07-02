@@ -68,7 +68,7 @@ const Sidebar = ({ openNav, setOpenNav }: SidebarProps) => {
 	];
 
 	return (
-		<aside className="absolute left-[-231px] py-8 border-r border-[#eff1f6] md:relative md:left-0 flex flex-col items-stretch">
+		<aside className="absolute -left-full py-8 border-r border-[#eff1f6] md:relative md:left-0 flex flex-col items-stretch">
 			<div className="ml-[54px]">
 				<Link href="/" className="block w-max">
 					<Logo />

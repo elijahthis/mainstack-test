@@ -16,17 +16,17 @@ const LineChartBox = ({ title, data }: LineChartBoxProps) => {
 		<div className="h-full bg-white border border-[#EFF1F6] rounded-tl-xl p-6 pt-8 relative">
 			<div className="mb-[40px] absolute top-0 left-0 w-full p-6">
 				<h4 className="mb-2">{title}</h4>
-				<p className="text-sm mb-6 text-[#4D5760] font-Söhne-Light">
+				<p className="text-sm mb-3 md:mb-6 text-[#4D5760] font-Söhne-Light">
 					{decodeURIComponent(router.asPath).slice(2)}
 				</p>
-				<h3 className="text-5xl">500</h3>
+				<h3 className="md:text-5xl">500</h3>
 			</div>
 			<ResponsiveLine
 				data={data}
 				colors={{ datum: "color" }}
 				pointBorderColor="#cc0000"
 				pointColor={"#cc0000"}
-				margin={{ top: 150, right: 110, bottom: 50, left: 60 }}
+				margin={{ top: 150, right: 20, bottom: 50, left: 32 }}
 				xScale={{ type: "point" }}
 				yScale={{
 					type: "linear",
@@ -61,32 +61,6 @@ const LineChartBox = ({ title, data }: LineChartBoxProps) => {
 				enableGridX={false}
 				// areaBlendMode="lighten"
 				useMesh={true}
-				legends={[
-					{
-						anchor: "bottom-right",
-						direction: "column",
-						justify: false,
-						translateX: 100,
-						translateY: 0,
-						itemsSpacing: 0,
-						itemDirection: "left-to-right",
-						itemWidth: 80,
-						itemHeight: 20,
-						itemOpacity: 0.75,
-						symbolSize: 12,
-						symbolShape: "circle",
-						symbolBorderColor: "rgba(0, 0, 0, .5)",
-						effects: [
-							{
-								on: "hover",
-								style: {
-									itemBackground: "rgba(0, 0, 0, .03)",
-									itemOpacity: 1,
-								},
-							},
-						],
-					},
-				]}
 				defs={[
 					linearGradientDef("gradientA", [
 						{ offset: 0, color: "inherit", opacity: 1 },
@@ -94,6 +68,7 @@ const LineChartBox = ({ title, data }: LineChartBoxProps) => {
 					]),
 				]}
 				fill={[{ match: "*", id: "gradientA" }]}
+				isInteractive={false}
 				theme={{
 					axis: {
 						ticks: {

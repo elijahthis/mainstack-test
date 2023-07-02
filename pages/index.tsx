@@ -5,10 +5,15 @@ import Tabs from "@/components/Tabs";
 import LineChartBox from "@/components/LineChartBox";
 import PieChartBox from "@/components/PieChartBox";
 import { fetchChartData } from "../requests";
-import { formatDate } from "@/utils/helpers";
+import {
+	capitalizeFirstLetter,
+	formatDate,
+	getFlagEmoji,
+} from "@/utils/helpers";
 import { pieColors } from "@/utils/constants";
 import Loader from "@/components/Loader";
 import ErrorPage from "@/components/ErrorPage";
+import { byCountry } from "country-code-lookup";
 
 export default function Dashboard() {
 	const [fetched, setFetched] = useState(false);
@@ -68,7 +73,8 @@ export default function Dashboard() {
 			) : (
 				<>
 					<div className="overflow-y-auto">
-						<div className="w-[800px] mb-6 h-[576px] md:w-full">
+						{/* w-[800px] */}
+						<div className="w-full mb-6 h-[576px] md:w-full">
 							<LineChartBox
 								title="Page Views"
 								data={[
@@ -91,7 +97,9 @@ export default function Dashboard() {
 							title="Top Locations"
 							data={chartData?.top_locations?.map((item: any, ind: number) => ({
 								id: item?.country,
-								label: `${item?.country} (${item?.percent}%)`,
+								label: `${getFlagEmoji(
+									byCountry(item?.country)?.iso2 ?? "NG"
+								)} ${item?.country} (${item?.percent}%)`,
 								value: item?.percent,
 								color: pieColors[ind],
 							}))}
@@ -100,7 +108,7 @@ export default function Dashboard() {
 							title="Top Referral source"
 							data={chartData?.top_sources?.map((item: any, ind: number) => ({
 								id: item?.source,
-								label: item?.source,
+								label: `${capitalizeFirstLetter(item?.source)}`,
 								value: item?.percent,
 								color: pieColors[ind],
 							}))}
