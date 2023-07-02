@@ -10,7 +10,7 @@ import {
 	PeopleIcon,
 	VidsIcon,
 } from "../svgs";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import { MdOutlineSettings } from "react-icons/md";
 import { PiDotsNineThin, PiDotsThreeBold } from "react-icons/pi";
 import { RiBug2Line } from "react-icons/ri";
@@ -18,6 +18,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import SettingsIcon from "../../assets/svgs/settings.svg";
+import IntegrationsIcon from "../../assets/svgs/integrations.svg";
+import ReferIcon from "../../assets/svgs/refer.svg";
+import BugReportIcon from "../../assets/svgs/bug_report.svg";
+import SwitchAccountIcon from "../../assets/svgs/switch_account.svg";
+import LogoutIcon from "../../assets/svgs/logout.svg";
+import useOutsideAlerter from "@/hooks/useOutsideAlerter";
 
 type LinkItemType = { icon: JSX.Element; label: string; link: string };
 
@@ -77,7 +83,6 @@ const Sidebar = ({ openNav, setOpenNav }: SidebarProps) => {
 
 			{/* user info + modal */}
 			<UserPopUp />
-			<SettingsIcon />
 		</aside>
 	);
 };
@@ -118,19 +123,29 @@ const SideGroup = ({ propObj }: SideGroupProps) => {
 };
 
 const UserPopUp = () => {
-	const [isOpen, setIsOpen] = useState<boolean>(false);
-
 	const userActions = [
-		{ label: "Settings", icon: <MdOutlineSettings /> },
-		{ label: "Integrations", icon: <></> },
-		{ label: "Refer and Earn", icon: <></> },
-		{ label: "Report bug", icon: <RiBug2Line /> },
-		{ label: "Switch account", icon: <></> },
-		{ label: "Log out", icon: <></> },
+		{ label: "Settings", icon: <SettingsIcon /> },
+		{ label: "Integrations", icon: <IntegrationsIcon /> },
+		{ label: "Refer and Earn", icon: <ReferIcon /> },
+		{ label: "Report bug", icon: <BugReportIcon /> },
+		{ label: "Switch account", icon: <SwitchAccountIcon /> },
+		{ label: "Log out", icon: <LogoutIcon /> },
 	];
 
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+
+	const wrapperRef = useRef<HTMLDivElement>(null);
+
+	useOutsideAlerter(wrapperRef, () => {
+		setIsOpen(false);
+	});
+
 	return (
-		<div className="flex flex-row items-center gap-3 pr-4 pl-[60px] mt-auto cursor-pointer relative">
+		<div
+			className="flex flex-row items-center gap-3 pr-4 pl-[60px] mt-auto cursor-pointer relative"
+			onClick={() => setIsOpen((prev) => !prev)}
+			ref={wrapperRef}
+		>
 			<Image
 				src="/images/profile-pic.png"
 				alt="profile"
@@ -142,7 +157,24 @@ const UserPopUp = () => {
 			<PiDotsThreeBold className="ml-auto " />
 
 			{/* Pop up */}
-			<div></div>
+			<div
+				className={`absolute right-0 bottom-0 w-11/12 bg-white  rounded-[6px] overflow-hidden transition-all duration-500 translate-y-3 ${
+					isOpen ? "h-auto opacity-1 translate-y-0" : "h-0 opacity-0"
+				}`}
+				style={{ boxShadow: "0px 10px 24px 0px rgba(55, 62, 64, 0.15)" }}
+			>
+				{userActions.map((item, ind) => (
+					<div
+						className={`p-[14px] flex flex-row items-center gap-3 text-sm ${
+							ind === userActions.length - 1 ? "text-red-500" : "text-[#4D5760]"
+						} font-medium cursor-pointer hover:bg-gray-100`}
+						key={ind}
+					>
+						{item.icon}
+						<p>{item.label}</p>
+					</div>
+				))}
+			</div>
 		</div>
 	);
 };
