@@ -1,0 +1,5 @@
+.LineChartBox {
+	& > div:last-of-type {
+		min-width: 500px;
+	}
+}

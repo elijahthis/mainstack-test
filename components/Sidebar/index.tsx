@@ -37,9 +37,6 @@ interface SideGroupProps {
 }
 
 const Sidebar = ({ openNav, setOpenNav }: SidebarProps) => {
-	const router = useRouter();
-	console.log(router);
-
 	const navList: { title: string | null; list: LinkItemType[] }[] = [
 		{
 			title: null,
@@ -67,9 +64,22 @@ const Sidebar = ({ openNav, setOpenNav }: SidebarProps) => {
 		},
 	];
 
+	const router = useRouter();
+
+	const wrapperRef = useRef<HTMLDivElement>(null);
+
+	useOutsideAlerter(wrapperRef, () => {
+		setOpenNav(false);
+	});
+
 	return (
-		<aside className="absolute -left-full py-8 border-r border-[#eff1f6] md:relative md:left-0 flex flex-col items-stretch">
-			<div className="ml-[54px]">
+		<aside
+			className={`absolute ${
+				openNav ? "left-0" : "-left-full"
+			} py-8 border-r border-[#eff1f6] bg-white h-full md:relative md:left-0 flex flex-col items-stretch transition-all duration-500 z-10`}
+			ref={wrapperRef}
+		>
+			<div className="md:ml-[54px] ml-5">
 				<Link href="/" className="block w-max">
 					<Logo />
 				</Link>
@@ -94,7 +104,7 @@ const SideGroup = ({ propObj }: SideGroupProps) => {
 
 	return (
 		<div>
-			<p className="px-[60px] uppercase text-[4D5760] text-xs mb-5 font-Söhne-Light text-[#4D5760]">
+			<p className="md:px-[60px] px-5 uppercase text-[4D5760] text-xs mb-5 font-Söhne-Light text-[#4D5760]">
 				{propObj.title}
 			</p>
 			<ul className="flex flex-col items-stretch gap-6">
@@ -103,7 +113,7 @@ const SideGroup = ({ propObj }: SideGroupProps) => {
 						<li key={ind}>
 							<Link
 								href={navItem.link}
-								className={`px-[60px] flex flex-row items-center gap-3 ${
+								className={`md:px-[60px] px-5 flex flex-row items-center gap-3 ${
 									router.route === navItem.link
 										? "text-[#FF5403]"
 										: "text-[#56616B]"
@@ -142,7 +152,7 @@ const UserPopUp = () => {
 
 	return (
 		<div
-			className="flex flex-row items-center gap-3 pr-4 pl-[60px] mt-auto cursor-pointer relative"
+			className="flex flex-row items-center gap-3 pr-4 md:pl-[60px] pl-5 mt-auto cursor-pointer relative"
 			onClick={() => setIsOpen((prev) => !prev)}
 			ref={wrapperRef}
 		>

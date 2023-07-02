@@ -3,6 +3,7 @@ import { ResponsiveLine } from "@nivo/line";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { Defs, linearGradientDef } from "@nivo/core";
+import styles from "./styles.module.scss";
 
 interface LineChartBoxProps {
 	title: string;
@@ -13,7 +14,9 @@ const LineChartBox = ({ title, data }: LineChartBoxProps) => {
 	const router = useRouter();
 
 	return (
-		<div className="h-full bg-white border border-[#EFF1F6] rounded-tl-xl p-6 pt-8 relative">
+		<div
+			className={`h-full bg-white border border-[#EFF1F6] rounded-tl-xl p-6 pt-8 relative overflow-y-auto ${styles.LineChartBox}`}
+		>
 			<div className="mb-[40px] absolute top-0 left-0 w-full p-6">
 				<h4 className="mb-2">{title}</h4>
 				<p className="text-sm mb-3 md:mb-6 text-[#4D5760] font-Söhne-Light">
