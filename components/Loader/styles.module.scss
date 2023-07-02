@@ -1,0 +1,22 @@
+@keyframes rotateLoader {
+	0% {
+		transform: rotate(0deg);
+	}
+	// 50% {
+	// 	transform: rotate(180deg);
+	// 	// animation-timing-function: cubic-bezier(0.57, 0, 0.43, 1);
+	// }
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.Loader {
+	height: 100%;
+	display: grid;
+	place-items: center;
+
+	svg {
+		animation: rotateLoader 0.75s linear infinite;
+	}
+}

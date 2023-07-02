@@ -7,6 +7,8 @@ import PieChartBox from "@/components/PieChartBox";
 import { fetchChartData } from "../requests";
 import { formatDate } from "@/utils/helpers";
 import { pieColors } from "@/utils/constants";
+import Loader from "@/components/Loader";
+import ErrorPage from "@/components/ErrorPage";
 
 export default function Dashboard() {
 	const [fetched, setFetched] = useState(false);
@@ -59,7 +61,11 @@ export default function Dashboard() {
 					defaultTab={4}
 				/>
 			</div>
-			{fetched && !loading && (
+			{loading || !fetched ? (
+				<Loader />
+			) : Object.entries(chartData).length === 0 ? (
+				<ErrorPage />
+			) : (
 				<>
 					<div className="overflow-y-auto">
 						<div className="w-[800px] mb-6 h-[576px] md:w-full">

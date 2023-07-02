@@ -153,7 +153,12 @@ const UserPopUp = () => {
 				height={32}
 				className="rounded-full"
 			/>
-			<p>Blessing Daniels</p>
+			<p
+				className="text-[#4D5760]"
+				style={{ fontSize: "15px", fontWeight: "400", lineHeight: "16px" }}
+			>
+				Blessing Daniels
+			</p>
 			<PiDotsThreeBold className="ml-auto " />
 
 			{/* Pop up */}
