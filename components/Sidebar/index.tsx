@@ -67,7 +67,7 @@ const Sidebar = ({ openNav, setOpenNav }: SidebarProps) => {
 
 	return (
 		<aside
-			className={`absolute ${
+			className={`fixed ${
 				openNav ? "left-0" : "-left-full"
 			} py-8 border-r border-[#eff1f6] bg-white h-full md:relative md:left-0 flex flex-col items-stretch transition-all duration-500 z-10 shadow-md md:shadow-none`}
 			ref={wrapperRef}
