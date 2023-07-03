@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
-import Dashboard from "..";
-import { createMockRouter } from "../test-utils/createMockRouter";
+import Dashboard from "../pages";
+import { createMockRouter } from "../pages/test-utils/createMockRouter";
 import { RouterContext } from "next/dist/shared/lib/router-context";
 
 // try the full router context approach
