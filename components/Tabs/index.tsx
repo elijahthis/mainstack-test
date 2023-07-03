@@ -1,4 +1,4 @@
-import { useState, useEffect, Dispatch, SetStateAction } from "react";
+import { useState, useEffect, Dispatch, SetStateAction, useRef } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -31,19 +31,23 @@ const Tabs = ({ tabItems, defaultTab = 0 }: TabsProps) => {
 		};
 	}, [router]);
 
-	let hash = router.asPath.includes("#") ? router.asPath.split("#")[1] : null;
+	const hash = useRef<string | null>(null);
+
+	hash.current = router.asPath.includes("#")
+		? router.asPath.split("#")[1]
+		: null;
 
 	useEffect(() => {
-		if (hash === null && !isNavigating) {
-			hash = tabItems[defaultTab];
-			router.push({ hash: encodeURIComponent(hash) });
+		if (hash.current === null && !isNavigating) {
+			hash.current = tabItems[defaultTab];
+			router.push({ hash: encodeURIComponent(hash.current) });
 		}
-	}, [isNavigating, hash]);
+	}, [isNavigating, hash.current]);
 
 	return (
 		<div className="flex flex-row items-center gap-3 overflow-y-auto">
 			{tabItems.map((tabItem, ind) => (
-				<Tab tabItem={tabItem} hash={hash} ind={ind} key={ind} />
+				<Tab tabItem={tabItem} hash={hash.current} ind={ind} key={ind} />
 			))}
 		</div>
 	);
