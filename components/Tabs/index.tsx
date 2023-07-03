@@ -42,7 +42,7 @@ const Tabs = ({ tabItems, defaultTab = 0 }: TabsProps) => {
 			hash.current = tabItems[defaultTab];
 			router.push({ hash: encodeURIComponent(hash.current) });
 		}
-	}, [isNavigating, hash.current]);
+	}, [isNavigating, defaultTab, router, tabItems]);
 
 	return (
 		<div className="flex flex-row items-center gap-3 overflow-y-auto">
