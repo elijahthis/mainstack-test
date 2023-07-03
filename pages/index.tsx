@@ -64,7 +64,7 @@ export default function Dashboard() {
 						"Custom Date",
 					]}
 					defaultTab={4}
-				/> 
+				/>
 			</div>
 			{loading || !fetched ? (
 				<Loader />
@@ -89,6 +89,7 @@ export default function Dashboard() {
 										color: "#FF5403",
 									},
 								]}
+								dataTestId="line-chart"
 							/>
 						</div>
 					</div>

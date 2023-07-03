@@ -13,6 +13,8 @@ const navList = [
 	"Item 8",
 ];
 
+// try the router mock approach
+
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 test("renders the Sidebar component", () => {

@@ -4,6 +4,12 @@ import type { NextComponentType } from "next";
 import { ReactNode } from "react";
 import Head from "next/head";
 
+// if (process.env.NEXT_PUBLIC_API_MOCKING === "true") {
+// 	import("./mocks").then(({ setupMocks }) => {
+// 		setupMocks();
+// 	});
+// }
+
 const App: NextComponentType<AppContext, AppInitialProps, AppLayoutProps> = ({
 	Component,
 	pageProps,

@@ -8,14 +8,16 @@ import styles from "./styles.module.scss";
 interface LineChartBoxProps {
 	title: string;
 	data: any[];
+	dataTestId: string;
 }
 
-const LineChartBox = ({ title, data }: LineChartBoxProps) => {
+const LineChartBox = ({ title, data, dataTestId }: LineChartBoxProps) => {
 	const router = useRouter();
 
 	return (
 		<div
 			className={`h-full bg-white border border-[#EFF1F6] rounded-tl-xl p-6 pt-8 relative overflow-y-auto ${styles.LineChartBox}`}
+			data-testid={dataTestId}
 		>
 			<div className="mb-[40px] absolute top-0 left-0 w-full p-6">
 				<h4 className="mb-2">{title}</h4>

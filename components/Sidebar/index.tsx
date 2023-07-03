@@ -63,6 +63,7 @@ const Sidebar = ({ openNav, setOpenNav }: SidebarProps) => {
 	useOutsideAlerter(wrapperRef, () => {
 		setOpenNav(false);
 	});
+	console.log("router", router);
 
 	return (
 		<aside
