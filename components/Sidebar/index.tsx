@@ -11,18 +11,10 @@ import {
 	VidsIcon,
 } from "../svgs";
 import { Dispatch, SetStateAction, useRef, useState } from "react";
-import { MdOutlineSettings } from "react-icons/md";
-import { PiDotsNineThin, PiDotsThreeBold } from "react-icons/pi";
-import { RiBug2Line } from "react-icons/ri";
+import { PiDotsThreeBold } from "react-icons/pi";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import SettingsIcon from "../../assets/svgs/settings.svg";
-import IntegrationsIcon from "../../assets/svgs/integrations.svg";
-import ReferIcon from "../../assets/svgs/refer.svg";
-import BugReportIcon from "../../assets/svgs/bug_report.svg";
-import SwitchAccountIcon from "../../assets/svgs/switch_account.svg";
-import LogoutIcon from "../../assets/svgs/logout.svg";
 import useOutsideAlerter from "@/hooks/useOutsideAlerter";
 
 type LinkItemType = { icon: JSX.Element; label: string; link: string };
@@ -76,7 +68,7 @@ const Sidebar = ({ openNav, setOpenNav }: SidebarProps) => {
 		<aside
 			className={`absolute ${
 				openNav ? "left-0" : "-left-full"
-			} py-8 border-r border-[#eff1f6] bg-white h-full md:relative md:left-0 flex flex-col items-stretch transition-all duration-500 z-10`}
+			} py-8 border-r border-[#eff1f6] bg-white h-full md:relative md:left-0 flex flex-col items-stretch transition-all duration-500 z-10 shadow-md md:shadow-none`}
 			ref={wrapperRef}
 		>
 			<div className="md:ml-[54px] ml-5">
@@ -133,13 +125,13 @@ const SideGroup = ({ propObj }: SideGroupProps) => {
 };
 
 const UserPopUp = () => {
-	const userActions = [
-		{ label: "Settings", icon: <SettingsIcon /> },
-		{ label: "Integrations", icon: <IntegrationsIcon /> },
-		{ label: "Refer and Earn", icon: <ReferIcon /> },
-		{ label: "Report bug", icon: <BugReportIcon /> },
-		{ label: "Switch account", icon: <SwitchAccountIcon /> },
-		{ label: "Log out", icon: <LogoutIcon /> },
+	const userActions: { label: string; icon: any }[] = [
+		{ label: "Settings", icon: "/images/settings.svg" },
+		{ label: "Integrations", icon: "/images/integrations.svg" },
+		{ label: "Refer and Earn", icon: "/images/refer.svg" },
+		{ label: "Report bug", icon: "/images/bug_report.svg" },
+		{ label: "Switch account", icon: "/images/switch_account.svg" },
+		{ label: "Log out", icon: "/images/logout.svg" },
 	];
 
 	const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -158,7 +150,7 @@ const UserPopUp = () => {
 		>
 			<Image
 				src="/images/profile-pic.png"
-				alt="profile"
+				alt="profile picture"
 				width={32}
 				height={32}
 				className="rounded-full"
@@ -185,7 +177,13 @@ const UserPopUp = () => {
 						} font-medium cursor-pointer hover:bg-gray-100`}
 						key={ind}
 					>
-						{item.icon}
+						<Image
+							src={item.icon}
+							width={16}
+							height={16}
+							alt={`${item.label} icon`}
+							// className
+						/>
 						<p>{item.label}</p>
 					</div>
 				))}

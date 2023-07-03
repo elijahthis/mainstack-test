@@ -64,7 +64,7 @@ export default function Dashboard() {
 						"Custom Date",
 					]}
 					defaultTab={4}
-				/>
+				/> 
 			</div>
 			{loading || !fetched ? (
 				<Loader />
